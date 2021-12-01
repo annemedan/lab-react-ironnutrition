@@ -20,16 +20,23 @@ function App() {
     let filteredFoodList;
     if (foodSearched === "") {
       filteredFoodList = allFoods;
-      console.log("inside if for food searched - all");
+      //console.log("inside if for food searched - all");
     } else {
       filteredFoodList = allFoods.filter((specificFood) => {
-        console.log(foodSearched);
-        //console.log("specificFood", specificFood, typeof specificFood);
+        //console.log(foodSearched);
         return specificFood.name.toLowerCase() === foodSearched.toLowerCase();
       });
     }
 
     setFoods(filteredFoodList);
+  };
+
+  const deleteFood = (foodName) => {
+    const filteredFoods = foods.filter((oneFood) => {
+      return oneFood.name.toLowerCase() !== foodName.toLowerCase();
+    });
+
+    setFoods(filteredFoods);
   };
 
   return (
@@ -38,7 +45,7 @@ function App() {
 
       <AddFoodForm addNewFood={addNewFood} />
       {foods.map((eachFood) => {
-        return <FoodBox foodObj={eachFood} />;
+        return <FoodBox foodObj={eachFood} deleteFood={deleteFood} />;
       })}
     </div>
   );
