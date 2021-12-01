@@ -10,6 +10,8 @@ function App() {
   const [foods, setFoods] = useState(foodsData);
   const [allFoods, setAllFoods] = useState(foodsData);
 
+  const [isShowing, setIsShowing] = useState(false);
+
   const addNewFood = (foodObj) => {
     const updatedFoods = [...foods, foodObj];
     const updatedAllFoods = [...allFoods, foodObj];
@@ -40,11 +42,21 @@ function App() {
     setFoods(filteredFoods);
   };
 
+  const showForm = () => {
+    if (isShowing === false) {
+      setIsShowing(true);
+    } else {
+      setIsShowing(false);
+    }
+  };
+
   return (
     <div className="App">
-      <AddFoodForm addNewFood={addNewFood} />
+      {isShowing ? <AddFoodForm addNewFood={addNewFood} /> : null}
 
-      <Button> Hide Form / Add New Food </Button>
+      <Button onClick={showForm}>
+        {isShowing ? "Hide Form" : "Add New Food"}
+      </Button>
 
       <Search searchFoodList={searchFoodList} />
 
