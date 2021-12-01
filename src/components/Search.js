@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Divider, Input } from "antd";
 
 function Search({ searchFoodList }) {
   const [searchContent, setSearchContent] = useState("");
@@ -12,8 +13,10 @@ function Search({ searchFoodList }) {
 
   return (
     <div className="filter-foods">
+      <Divider>Search</Divider>
+
       <form onSubmit={submitClick}>
-        <input type="text" value={searchContent} onChange={handleSearch} />
+        <Input type="text" value={searchContent} onChange={handleSearch} />
 
         <button type="submit">Search</button>
       </form>

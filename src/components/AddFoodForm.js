@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Input } from "antd";
+import { Input, Divider } from "antd";
 
 function AddFoodForm({ addNewFood }) {
   const [name, setName] = useState("");
@@ -35,31 +35,41 @@ function AddFoodForm({ addNewFood }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Name: </label>
-      <Input type="text" name="name" value={name} onChange={handleName} />
+    <div>
+      <div className="add-new">
+        <Divider>Add Food Entry</Divider>
+        <form onSubmit={handleSubmit}>
+          <label>Name: </label>
+          <Input type="text" name="name" value={name} onChange={handleName} />
 
-      <label> Image: </label>
-      <Input type="text" name="image" value={image} onChange={handleImage} />
+          <label> Image: </label>
+          <Input
+            type="text"
+            name="image"
+            value={image}
+            onChange={handleImage}
+          />
 
-      <label>Calories: </label>
-      <Input
-        type="number"
-        name="calories"
-        value={calories}
-        onChange={handleCalories}
-      />
+          <label>Calories: </label>
+          <Input
+            type="number"
+            name="calories"
+            value={calories}
+            onChange={handleCalories}
+          />
 
-      <label>Servings: </label>
-      <Input
-        type="number"
-        name="servings"
-        value={servings}
-        onChange={handleServings}
-      />
+          <label>Servings: </label>
+          <Input
+            type="number"
+            name="servings"
+            value={servings}
+            onChange={handleServings}
+          />
 
-      <button type="submit">Add new food</button>
-    </form>
+          <button type="submit">Add new food</button>
+        </form>
+      </div>
+    </div>
   );
 }
 
