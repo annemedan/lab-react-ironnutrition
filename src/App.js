@@ -5,12 +5,15 @@ import FoodBox from "./components/FoodBox";
 import AddFoodForm from "./components/AddFoodForm";
 import Search from "./components/Search";
 import { Row, Button, Divider } from "antd";
+import EmptyList from "./components/EmptyList";
 
 function App() {
   const [foods, setFoods] = useState(foodsData);
   const [allFoods, setAllFoods] = useState(foodsData);
 
   const [isShowing, setIsShowing] = useState(false);
+
+  const [isEmpty, setIsEmpty] = useState(false);
 
   const addNewFood = (foodObj) => {
     const updatedFoods = [...foods, foodObj];
@@ -40,6 +43,12 @@ function App() {
     });
 
     setFoods(filteredFoods);
+
+    if (filteredFoods === []) {
+      setIsEmpty(true);
+    } else {
+      setIsEmpty(false);
+    }
   };
 
   const showForm = () => {
@@ -49,6 +58,11 @@ function App() {
       setIsShowing(false);
     }
   };
+  // console.log("foods:", foods);
+
+  // const noContent = () => {
+
+  // };
 
   return (
     <div className="App">
@@ -62,11 +76,15 @@ function App() {
 
       <Divider>Food List</Divider>
 
-      <Row style={{ width: "100%", justifyContent: "center" }}>
-        {foods.map((eachFood) => {
-          return <FoodBox foodObj={eachFood} deleteFood={deleteFood} />;
-        })}
-      </Row>
+      {isEmpty ? (
+        <EmptyList />
+      ) : (
+        <Row style={{ width: "100%", justifyContent: "center" }}>
+          {foods.map((eachFood) => {
+            return <FoodBox foodObj={eachFood} deleteFood={deleteFood} />;
+          })}
+        </Row>
+      )}
     </div>
   );
 }
