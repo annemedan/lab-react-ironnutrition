@@ -44,7 +44,7 @@ function App() {
 
     setFoods(filteredFoods);
 
-    if (filteredFoods === []) {
+    if (filteredFoods.length === 0) {
       setIsEmpty(true);
     } else {
       setIsEmpty(false);
@@ -59,10 +59,6 @@ function App() {
     }
   };
   // console.log("foods:", foods);
-
-  // const noContent = () => {
-
-  // };
 
   return (
     <div className="App">
